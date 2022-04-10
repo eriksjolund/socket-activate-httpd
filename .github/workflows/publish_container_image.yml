@@ -3,8 +3,6 @@ on:
   push:
     tags:
       - 'v*.*.*'
-    branches:
-      - 'fix_container_image_build'
 
 jobs:
   build_push_container:
