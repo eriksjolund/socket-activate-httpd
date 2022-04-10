@@ -1,4 +1,4 @@
-FROM registry.fedoraproject.org/fedora:latest
+FROM docker.io/library/fedora:latest
 
 RUN dnf install -y httpd
 
