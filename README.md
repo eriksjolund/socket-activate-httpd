@@ -24,7 +24,7 @@ from the file [./Containerfile](./Containerfile).
 
 ### Socket activate an httpd systemd user service
 
-1. Start the httpd server socket
+1. Start the httpd socket unit
     ```
     git clone https://github.com/eriksjolund/socket-activate-httpd.git
     mkdir -p ~/.config/systemd/user
