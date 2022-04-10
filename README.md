@@ -51,7 +51,7 @@ from the file [./Containerfile](./Containerfile).
 
 ### Socket activate httpd with systemd-socket-activate
 
-If you just ran the previous example, first run `systemctl --user stop httpd.service` and `systemctl --user stop httpd.socket`. The TCP port 8080 needs to be free.
+If you just ran the previous example, first run `systemctl --user stop httpd.service` and `systemctl --user stop httpd.socket`. The TCP port 8080 needs to be available for this example.
 
 1. Socket activate the httpd server
     ```
