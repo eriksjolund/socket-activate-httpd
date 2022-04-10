@@ -77,7 +77,7 @@ If you just ran the previous example, first run `systemctl --user stop httpd.ser
     $
     ```
 
-### httpd socket activation implementation
+### httpd socket activation configuration
 
 The passed in sockets need to match corresponding `Listen` directives in the __httpd__ configuration.
 For example, here the port number 8080 needs to used both in the file _httpd.conf_ and in the socket unit _httpd.socket_.
