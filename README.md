@@ -2,7 +2,7 @@
 
 A demo of how to socket activate an [httpd](https://httpd.apache.org) container with Podman.
 
-When using socket activation, there are some changes to how to run `podman run`:
+When using socket activation, there are some changes regarding how to run `podman run`:
 
 * [`--publish`](https://docs.podman.io/en/latest/markdown/podman-run.1.html#publish-p-ip-hostport-containerport-ip-containerport-hostport-containerport-containerport) is not used
 * [`--network=none`](https://docs.podman.io/en/latest/markdown/podman-run.1.html#network-mode-net) can be used to prevent outgoing connections
