@@ -51,7 +51,7 @@ from the file [./Containerfile](./Containerfile).
     curl: (6) Could not resolve host: podman.io
     $
     ```
-    (The command-line option `--network=none` was added to prevent the container from establishing outgoing connections)
+    (The command-line option `--network=none` was added to `podman run` to prevent the container from establishing outgoing connections)
 
 ### Socket activate httpd with systemd-socket-activate
 
