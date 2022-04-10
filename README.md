@@ -29,7 +29,7 @@ from the file [./Containerfile](./Containerfile).
     ```
     The user service _httpd.service_ will be started as soon as a client connects to the listening socket.
 
-2. Run curl on the host to download a webpage from  __httpd__ that is running in the container.
+2. Run curl on the host to download a webpage from  __httpd__ in the container.
     ```
     $ curl -s localhost:8080 | head -6
     <!doctype html>
