@@ -1,20 +1,15 @@
 # socket-activate-httpd
 
-A demo of how to socket activate an [httpd](https://httpd.apache.org) container with Podman.
+A demo of how to socket activate an [httpd](https://httpd.apache.org) container with Podman. The option `--network=none` is given to `podman run` to prevent
+outgoing connections.
 
 ### Requirements
 
+* __curl__
 * __podman__  version 3.4.0 (released September 2021) or newer
 * __container-selinux__ version 2.181.0 (released March 2022) or newer
 
 (If you are using an older version of __container-selinux__ and it does not work, add `--security-opt label=disable` to `podman run`)
-
-### Installation
-
-1. Install __curl__
-    ```
-    sudo dnf -y install curl
-    ```
 
 ### About the container image
 
@@ -32,8 +27,9 @@ from the file [./Containerfile](./Containerfile).
     systemctl --user daemon-reload
     systemctl --user start httpd.socket
     ```
+    The user service _httpd.service_ will be started as soon as a client connects to the listening socket.
 
-2. Run curl
+2. Run curl on the host to download a webpage from  __httpd__ that is running in the container.
     ```
     $ curl -s localhost:8080 | head -6
     <!doctype html>
@@ -45,7 +41,7 @@ from the file [./Containerfile](./Containerfile).
     $
     ```
 
-3. Try establishing an outgoing connection
+3. Try to establish an outgoing connection by running curl in the container
     ```
     $ podman exec -t httpd curl https://podman.io
     curl: (6) Could not resolve host: podman.io
@@ -81,11 +77,9 @@ If you just ran the previous example, first run `systemctl --user stop httpd.ser
     $
     ```
 
-### Limitation of httpd socket activation support
+### httpd socket activation implementation
 
-__htttpd__ has a limitation in its socket activation implementation.
-
-The passed in TCP socket's port number needs to match a configured listening port in the __httpd__ configuration.
+The passed in sockets need to match corresponding `Listen` directives in the __httpd__ configuration.
 For example, here the port number 8080 needs to used both in the file _httpd.conf_ and in the socket unit _httpd.socket_.
 
 ```
@@ -95,8 +89,6 @@ For example, here the port number 8080 needs to used both in the file _httpd.con
     RUN sed -i "s/Listen 80/Listen 127.0.0.1:8080/g" /etc/httpd/conf/httpd.conf
     $
 ```
-
-Normally socket activation is implemented in such a way that servers do not need to configure the sockets themselves.
 
 ### Troubleshooting
 
