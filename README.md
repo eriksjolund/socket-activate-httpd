@@ -11,7 +11,7 @@ A demo of how to socket activate an [httpd](https://httpd.apache.org) container 
 
 ### Installation
 
-1. Install __socat__
+1. Install __curl__
     ```
     sudo dnf -y install curl
     ```
@@ -55,6 +55,8 @@ from the file [./Containerfile](./Containerfile).
 
 ### Socket activate httpd with systemd-socket-activate
 
+If you just ran the previous example, first run `systemctl --user stop httpd.service` and `systemctl --user stop httpd.socket`. The TCP port 8080 needs to be free.
+
 1. Socket activate the httpd server
     ```
     $ systemd-socket-activate -l 8080 podman run --rm --name httpd2 --network=none ghcr.io/eriksjolund/socket-activate-httpd
@@ -84,7 +86,7 @@ from the file [./Containerfile](./Containerfile).
 __htttpd__ has a limitation in its socket activation implementation.
 
 The passed in TCP socket's port number needs to match a configured listening port in the __httpd__ configuration.
-For example, here the port number 8080 needs to used both in the Containerfile and in __ListenStream__
+For example, here the port number 8080 needs to used both in the file _httpd.conf_ and in the socket unit _httpd.socket_.
 
 ```
     $ grep 8080 systemd/httpd.socket
@@ -94,7 +96,7 @@ For example, here the port number 8080 needs to used both in the Containerfile a
     $
 ```
 
-Normally socket activation is implemented in such a way that servers do not need to configure the sockets by themselves.
+Normally socket activation is implemented in such a way that servers do not need to configure the sockets themselves.
 
 ### Troubleshooting
 
