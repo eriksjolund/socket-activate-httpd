@@ -22,7 +22,7 @@ The container image [__ghcr.io/eriksjolund/socket-activate-httpd__](https://gith
 is built by the GitHub Actions workflow [.github/workflows/publish_container_image.yml](.github/workflows/publish_container_image.yml)
 from the file [./Containerfile](./Containerfile).
 
-### Activate an instance of a templated systemd user service
+### Socket activate an httpd systemd user service
 
 1. Start the httpd server socket
     ```
