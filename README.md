@@ -11,7 +11,7 @@ When using socket activation, there are some changes regarding how to run `podma
 
 * __curl__
 * __podman__  version 3.4.0 (released September 2021) or newer
-* __container-selinux__ version 2.181.0 (released March 2022) or newer
+* __container-selinux__ version 2.183.0 (released April 2022) or newer
 
 (If you are using an older version of __container-selinux__ and it does not work, add `--security-opt label=disable` to `podman run`)
 
